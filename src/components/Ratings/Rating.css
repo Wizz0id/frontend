@@ -1,0 +1,22 @@
+.search-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0;
+  }
+
+  .search-input {
+    width: 300px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #333;
+    outline: none;
+    transition: border-color 0.3s ease;
+  }
+
+  .search-input:hover {
+    border-color: #b1bef5; /* Цвет, соответствующий кнопке */
+  }

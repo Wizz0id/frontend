@@ -1,13 +1,12 @@
 import axios from 'axios';
 import React, { Fragment, useEffect, useState, useCallback } from 'react';
 import Grade from '../Grade/Grade';
-import './TeacherCard.css'; // Убедитесь, что этот файл CSS подключен
+import './TeacherCard.css';
 
-const host = "http://localhost:8080"
+const host = "http://localhost:8080";
 
-export default function TeacherCard() {
+export default function TeacherCard({ searchQuery }) {
   const [teachers, setTeachers] = useState([]);
-  const [searchQuery, setSearchQuery] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
@@ -16,11 +15,11 @@ export default function TeacherCard() {
     setError(null);
     try {
       const url = query
-        ? `${host}/user-api/teachers/?q=${query}`
+        ? `${host}/user-api/teachers?q=${query}`
         : `${host}/user-api/teachers/all`;
 
       const response = await axios.get(url);
-      setTeachers(response.data.teachers || []);
+      setTeachers(response.data || []);
     } catch (error) {
       if (error.response && error.response.status === 429) {
         console.error('Превышен лимит запросов. Пожалуйста, попробуйте позже.');
@@ -35,43 +34,18 @@ export default function TeacherCard() {
   }, []);
 
   useEffect(() => {
-    fetchTeachers('');
-  }, [fetchTeachers]);
-
-  useEffect(() => {
-    const handler = setTimeout(() => {
-      if (searchQuery) {
-        fetchTeachers(searchQuery);
-      }
-    }, 300); // Задержка в 300 мс
-
-    return () => {
-      clearTimeout(handler);
-    };
+    fetchTeachers(searchQuery);
   }, [searchQuery, fetchTeachers]);
-
-  const handleSearch = (event) => {
-    setSearchQuery(event.target.value);
-  };
 
   return (
     <Fragment>
-      <div className="search-container">
-        <input
-          type="text"
-          placeholder="Поиск преподавателей..."
-          value={searchQuery}
-          onChange={handleSearch}
-          className="search-input"
-        />
-      </div>
       {loading && <p>Загрузка...</p>}
       {error && <p style={{ color: 'red' }}>{error}</p>}
       <section className="teacher-cards">
         {teachers.map((teacher) => (
           <div key={teacher.id} className="teacher-card">
             <img
-              src={'default_img.jpg'}
+              src='imgs/default_avatar.jpg'
               alt={`${teacher.name} ${teacher.lastname}`}
               className="teacher-img"
             />
@@ -79,8 +53,8 @@ export default function TeacherCard() {
             <div className="rating">
               <span>★ {teacher.baseRating}</span>
               <span>({teacher.baseRatesCount} reviews)</span>
-              <Grade teacherId={teacher.id} />
             </div>
+            <Grade teacherId={teacher.id} />
           </div>
         ))}
       </section>

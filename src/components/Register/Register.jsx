@@ -30,7 +30,6 @@ function Registration() {
                 lastName,
                 email,
             });
-            debugger;
             if (response.status === 200) {
                 setSuccess(true); // успешно зарегистрировано
                 setIsModalOpen(true); // открываем модальное окно

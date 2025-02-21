@@ -1,6 +1,6 @@
 import './App.css';
 import React, { Fragment } from 'react';
-import Rating from './Ratings/Rating';
+import Rating from './components/Ratings/Rating';
 import AboutUs from './AboutUs/AboutUs';
 import Home from './components/Home';
 import Login from './components/Login/Login';
@@ -20,8 +20,8 @@ export default function App() {
   return (
     <Fragment>
       {!isLoginOrRegister && (
-        <header className="header features">
-          <div className="logo">Преподаватели SSAU</div>
+        <header className="header">
+          <div className="logo">Uni.Con</div>
           <nav>
           <ul>
             <li><Link to="/">Главная</Link></li>

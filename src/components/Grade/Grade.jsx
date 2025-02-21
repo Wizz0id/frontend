@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import Button from '../Button/Button';
 import { useNavigate } from 'react-router-dom';
 import './Grade.css'; // Убедитесь, что этот файл CSS подключен
 
@@ -29,10 +30,11 @@ const Grade = ({ teacherId }) => {
       navigate('/login');
     }
   };
-
+  
   const closeModal = () => {
     setIsFlipped(false);
   };
+  
 
   const handleGradeChange = (event) => {
     const { name, value } = event.target;
@@ -50,7 +52,7 @@ const Grade = ({ teacherId }) => {
     const userId = localStorage.getItem('userId'); // Предполагается, что user_id хранится в localStorage
     try {
       const response = await axios.post(
-        `${host}/rating`,
+        `${host}/grade-api/new`,
         {
           user_id: userId,
           teacher_id: teacherId,
@@ -73,84 +75,109 @@ const Grade = ({ teacherId }) => {
   };
 
   return (
-    <div>
-      <button className="small-button" onClick={openModal}>Оставить отзыв</button>
+    <div className="grade">
+      <button className="button-55" onClick={openModal}>Оставить отзыв</button>
       <div className={`modal ${isFlipped ? 'open' : ''}`}>
         <div className="modal-content">
           <span className="close" onClick={closeModal}>&times;</span>
           <h2>Оставить отзыв</h2>
           <form>
-            <label>
-              Лояльность:
-              <input
-                type="number"
-                name="loyaltyGrade"
-                value={grades.loyaltyGrade}
-                onChange={handleGradeChange}
-              />
-            </label>
-            <label>
-              Требовательность:
-              <input
-                type="number"
-                name="demandingGrade"
-                value={grades.demandingGrade}
-                onChange={handleGradeChange}
-              />
-            </label>
-            <label>
-              Представление материала:
-              <input
-                type="number"
-                name="materialPresentationGrade"
-                value={grades.materialPresentationGrade}
-                onChange={handleGradeChange}
-              />
-            </label>
-            <label>
-              Чувство юмора:
-              <input
-                type="number"
-                name="senseOfHumorGrade"
-                value={grades.senseOfHumorGrade}
-                onChange={handleGradeChange}
-              />
-            </label>
-            <label>
-              Легкость сдачи МЛТ:
-              <input
-                type="number"
-                name="easeOfPassingMlt"
-                value={grades.easeOfPassingMlt}
-                onChange={handleGradeChange}
-              />
-            </label>
-            <label>
-              Общее впечатление:
-              <input
-                type="number"
-                name="generalImpressionMlt"
-                value={grades.generalImpressionMlt}
-                onChange={handleGradeChange}
-              />
-            </label>
-            <label>
-              Комментарий:
+            <table className="grade-table">
+              <tbody>
+                <tr>
+                  <td><label>Лояльность:</label></td>
+                  <td>
+                    <input
+                      type="number"
+                      name="loyaltyGrade"
+                      min="1"
+                      max="10"
+                      value={grades.loyaltyGrade}
+                      onChange={handleGradeChange}
+                    />
+                  </td>
+                </tr>
+                <tr>
+                  <td><label>Требовательность:</label></td>
+                  <td>
+                    <input
+                      type="number"
+                      min="1"
+                      max="10"
+                      name="demandingGrade"
+                      value={grades.demandingGrade}
+                      onChange={handleGradeChange}
+                    />
+                  </td>
+                </tr>
+                <tr>
+                  <td><label>Представление материала:</label></td>
+                  <td>
+                    <input
+                      type="number"
+                      min="1"
+                      max="10"
+                      name="materialPresentationGrade"
+                      value={grades.materialPresentationGrade}
+                      onChange={handleGradeChange}
+                    />
+                  </td>
+                </tr>
+                <tr>
+                  <td><label>Чувство юмора:</label></td>
+                  <td>
+                    <input
+                      type="number"
+                      min="1"
+                      max="10"
+                      name="senseOfHumorGrade"
+                      value={grades.senseOfHumorGrade}
+                      onChange={handleGradeChange}
+                    />
+                  </td>
+                </tr>
+                <tr>
+                  <td><label>Легкость сдачи:</label></td>
+                  <td>
+                    <input
+                      type="number"
+                      min="1"
+                      max="5"
+                      name="easeOfPassingMlt"
+                      value={grades.easeOfPassingMlt}
+                      onChange={handleGradeChange}
+                    />
+                  </td>
+                </tr>
+                <tr>
+                  <td><label>Общее впечатление:</label></td>
+                  <td>
+                    <input
+                      type="number"
+                      min="1"
+                      max="5"
+                      name="generalImpressionMlt"
+                      value={grades.generalImpressionMlt}
+                      onChange={handleGradeChange}
+                    />
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <div className="comment-group">
+              <label>Комментарий:</label>
               <textarea
                 value={comment}
                 onChange={handleCommentChange}
               />
-            </label>
-            <button type="button" onClick={handleSubmit}>
-              Отправить отзыв
-            </button>
+            </div>
+            <Button className="button-55" buttonClicked={handleSubmit}>Отправить отзыв</Button>
           </form>
         </div>
       </div>
     </div>
   );
+  
 };
 
 export default Grade;
-
-//<Button className="learn-more-button">Learn More</Button>

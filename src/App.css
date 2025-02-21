@@ -4,15 +4,32 @@
 }
 
 .header {
+  position: relative; /* Ensure the header is positioned relatively */
   display: flex;
-  justify-content: space-between;
   align-items: center;
   padding: 10px 20px;
+  background-color: #ffffff00;
 }
 
 .header .logo {
-  font-size: 24px;
   font-weight: bold;
+}
+
+.header{
+  font-size: 24px;
+}
+
+.logo{
+  font-size: 36px;
+}
+
+.header nav {
+  position: absolute; /* Absolute positioning */
+  left: 50%;
+  transform: translateX(-50%); /* Center the nav */
+  display: flex;
+  justify-content: center;
+  padding: 0px;
 }
 
 .header nav ul {
@@ -25,8 +42,10 @@
   color: white;
   text-decoration: none;
 }
-.header nav{
-  margin-left: 30%;
+
+.header .login-button {
+  position: absolute; /* Position the button absolutely */
+  right: 20px; /* Adjust as needed */
 }
 
 .login-button {
@@ -38,6 +57,7 @@
   color: white;
   cursor: pointer;
 }
+
 
 .main-section {
   display: flex;
@@ -94,4 +114,28 @@
 .teacher-card .rating {
   font-size: 14px;
   color: #888;
+}
+
+.hero {
+  position: relative;
+  text-align: center;
+  color: white;
+  padding: 220px 20px;
+  background: url('../public/imgs/background_main.png') no-repeat center bottom/cover;
+}
+
+.hero .img-background {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: auto;
+  z-index: -1; /* Ensure the image is behind the text */
+}
+.hero h1{
+  font-size: 44px;
+}
+.hero p{
+  font-size: 25px;
+  color: #a8a8a8;
 }

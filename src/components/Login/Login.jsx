@@ -29,7 +29,7 @@ export default function Login() {
           console.log("Роли пользователя:", roles);
 
           // Перенаправление на страницу событий
-          window.location.href = "/events";
+          window.location.href = "/";
       }
   } catch (error) {
       if(error.status) {
