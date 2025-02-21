@@ -1,38 +1,97 @@
 .App {
+  font-family: Arial, sans-serif;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.header {
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  padding: 10px 20px;
+}
+
+.header .logo {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.header nav ul {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+
+.header nav ul li a {
+  color: white;
+  text-decoration: none;
+}
+.header nav{
+  margin-left: 30%;
+}
+
+.login-button {
+  margin-left: auto;
+  padding: 10px 20px;
+  background-color: #ff6b6b;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+}
+
+.main-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 50px 20px;
+  background-color: #00234d;
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.main-content h1 {
+  font-size: 48px;
+  margin-bottom: 20px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.main-content p {
+  font-size: 18px;
+  margin-bottom: 30px;
+}
+
+.learn-more-button {
+  padding: 10px 20px;
+  background-color: #8a33fd;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+}
+
+.teacher-cards {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  padding: 20px;
+}
+
+.teacher-card {
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 20px;
+  text-align: center;
+  width: 200px;
+}
+
+.teacher-card img {
+  width: 100%;
+  border-radius: 5px;
+}
+
+.teacher-card h3 {
+  margin: 10px 0;
+}
+
+.teacher-card .rating {
+  font-size: 14px;
+  color: #888;
 }
